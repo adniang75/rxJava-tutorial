@@ -10,11 +10,13 @@ public class ObservableWithoutBackpressure {
 
     public static void main(String[] args) {
 
-        Observable<Integer> positiveNumberEvents = Observable.fromIterable(RxUtils.positiveNumbers(1000000))
+        Observable<Integer> positiveNumberEvents = Observable
+                .fromIterable(RxUtils.positiveNumbers(1000000))
                 .repeat()
                 .observeOn(Schedulers.newThread())
                 .subscribeOn(Schedulers.newThread());
-        positiveNumberEvents.subscribe(new DemoObserver<>());
+        positiveNumberEvents
+                .subscribe(new DemoObserver<>());
         RxUtils.sleep(50);
     }
 
