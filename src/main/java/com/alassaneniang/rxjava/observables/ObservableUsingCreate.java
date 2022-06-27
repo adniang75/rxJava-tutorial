@@ -13,7 +13,8 @@ public class ObservableUsingCreate {
     public static void main(String[] args) {
 
         List<Shape> shapes = RxUtils.shapes(5);
-        Observable.create(emitter -> {
+        Observable
+                .create(emitter -> {
                     try {
                         shapes.forEach(emitter::onNext);
                     } catch (Exception exception) {

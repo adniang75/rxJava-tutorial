@@ -1,20 +1,17 @@
 package com.alassaneniang.rxjava.observables;
 
-import com.alassaneniang.rxjava.utils.RxUtils;
 import io.reactivex.rxjava3.core.Observable;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.TimeUnit;
-
-@Slf4j(topic = "ObservableUsingTimer")
-public class ObservableUsingTimer {
+@Slf4j(topic = "ObservableUsingRange")
+public class ObservableUsingRange {
 
     public static void main(String[] args) {
 
         Observable
-                .timer(5, TimeUnit.SECONDS)
+                .range(1, 10)
                 .subscribe(new DemoObserver<>());
-        RxUtils.sleep(10);
+
     }
 
 }
