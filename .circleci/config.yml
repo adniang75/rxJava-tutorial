@@ -21,19 +21,21 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn -B clean package
       # Then run your tests!
       - run:
           name: Test
           command: mvn test
-  build:
+  sonar-code-analysis:
     docker:
       - image: 'circleci/openjdk:11-jdk'
     steps:
       - checkout
       - run:
           name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar -Dsonar.projectKey=adniang75_rxJava-tutorial
+          command: |
+            mvn clean jacoco:prepare-agent verify -Dsonar.projectKey=adniang75_rxJava-tutorial
+#            mvn jacoco:report sonar:sonar -Dsonar.qualitygate.wait=true -Dsonar.projectKey=adniang75_rxJava-tutorial
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -41,8 +43,7 @@ workflows:
   build-and-test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build-and-test
-  main:
-    jobs:
-      - build:
+      - build-and-test:
+          context: SonarCloud
+      - sonar-code-analysis:
           context: SonarCloud

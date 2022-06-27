@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class RxUtils {
 
     private static final Random random = new Random();
-    private static final int MIN = 1;
+    public static final int MIN = 1;
 
     private RxUtils() {
     }
