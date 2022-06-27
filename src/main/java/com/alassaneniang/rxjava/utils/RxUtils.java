@@ -1,6 +1,7 @@
 package com.alassaneniang.rxjava.utils;
 
 import com.alassaneniang.rxjava.models.Shape;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,11 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Slf4j(topic = "RxUtils")
 public class RxUtils {
 
-    private static final Random random = new Random();
     public static final int MIN = 1;
+    private static final Random random = new Random();
 
     private RxUtils() {
     }
@@ -91,6 +93,14 @@ public class RxUtils {
             }
         }
         return true;
+    }
+
+    public static void sleep(long seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException exception) {
+            log.error(exception.getMessage());
+        }
     }
 
 }
