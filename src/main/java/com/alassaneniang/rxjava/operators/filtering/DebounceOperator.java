@@ -20,7 +20,8 @@ public class DebounceOperator {
 
         log.info("Debounce Operator");
         Random random = new Random();
-        Observable.interval(2, TimeUnit.SECONDS)
+        Observable
+                .interval(2, TimeUnit.SECONDS)
                 .map(c -> {
                     changeIt.add((char) (random.nextInt(26) + 'a'));
                     return changeIt;

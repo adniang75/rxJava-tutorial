@@ -10,7 +10,8 @@ public class DistinctOperator {
     public static void main(String[] args) {
 
         log.info("Distinct Operator");
-        Observable.just(1, 2, 3, 2, 4, 1, 2, 3, 4, 5)
+        Observable
+                .just(1, 2, 3, 2, 4, 1, 2, 3, 4, 5)
                 .distinct()
                 .subscribe(new DemoObserver<>());
 

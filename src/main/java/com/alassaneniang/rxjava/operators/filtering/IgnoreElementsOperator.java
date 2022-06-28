@@ -2,21 +2,21 @@ package com.alassaneniang.rxjava.operators.filtering;
 
 import com.alassaneniang.rxjava.utils.RxUtils;
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.MaybeObserver;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ElementAtOperator {
+public class IgnoreElementsOperator {
 
     public static void main(String[] args) {
 
-        log.info("ElementAt Operator");
+        log.info("IgnoreElements Operator");
         Observable
-                .fromIterable(RxUtils.positiveNumbers(10))
-                .elementAt(5)
-                .subscribe(new MaybeObserver<>() {
+                .fromIterable(RxUtils.primeNumbers(10))
+                .ignoreElements()
+                .subscribe(new CompletableObserver() {
 
                     @Override
                     public void onSubscribe(@NonNull Disposable disposable) {
@@ -24,20 +24,16 @@ public class ElementAtOperator {
                     }
 
                     @Override
-                    public void onSuccess(@NonNull Integer integer) {
-                        log.info("onSuccess -> {}", integer);
+                    public void onComplete() {
+                        log.info("onComplete");
                     }
 
                     @Override
                     public void onError(@NonNull Throwable throwable) {
                         log.info("onError -> {}", throwable.getMessage());
                     }
-
-                    @Override
-                    public void onComplete() {
-                        log.info("onComplete");
-                    }
                 });
+
 
     }
 
