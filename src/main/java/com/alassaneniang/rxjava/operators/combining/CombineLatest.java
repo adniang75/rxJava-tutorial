@@ -5,21 +5,17 @@ import com.alassaneniang.rxjava.utils.RxUtils;
 import io.reactivex.rxjava3.core.Observable;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class CombineLatest {
 
-    private static List<Character> changeIt = new ArrayList<>();
-
     public static void main(String[] args) {
 
         log.info("Combine Latest Operator");
-        Observable observable1 = Observable
+        Observable<Long> observable1 = Observable
                 .interval(1, TimeUnit.SECONDS);
-        Observable observable2 = Observable
+        Observable<Long> observable2 = Observable
                 .interval(2, TimeUnit.SECONDS);
         Observable
                 .combineLatest(
